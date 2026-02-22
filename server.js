@@ -17,7 +17,7 @@ const PORT = 1726;
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: `https://kyst.onrender.com/:${PORT}`,
+        origin: `https://kyst.onrender.com/:`,
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -242,7 +242,7 @@ const GOOGLE_CLIENT_SECRET = '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';
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: `https://kyst.onrender.com/:${PORT}/auth/google/callback`
+    callbackURL: `https://kyst.onrender.com/auth/google/callback`
 }, async (accessToken, refreshToken, profile, done) => {
     console.log('✅ Google profile:', profile.id);
     
@@ -305,13 +305,13 @@ passport.use(new GoogleStrategy({
 }));
 
 // ============= GITHUB OAUTH =============
-const GITHUB_CLIENT_ID = 'your_github_client_id';
-const GITHUB_CLIENT_SECRET = 'your_github_client_secret';
+const GITHUB_CLIENT_ID = 'Ov23liXfvxl36zvuWj8J';
+const GITHUB_CLIENT_SECRET = 'f83249addc5f5b6a4eb30ae025e87b5eda5be9a4';
 
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: `https://kyst.onrender.com/:${PORT}/auth/github/callback`
+    callbackURL: `https://kyst.onrender.com/auth/github/callback`
 }, async (accessToken, refreshToken, profile, done) => {
     console.log('✅ GitHub profile:', profile.id);
     
@@ -381,7 +381,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect(`https://kyst.onrender.com/:${PORT}`);
+        res.redirect(`https://kyst.onrender.com/`);
     }
 );
 
@@ -392,7 +392,7 @@ app.get('/auth/github',
 app.get('/auth/github/callback', 
     passport.authenticate('github', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect(`https://kyst.onrender.com/:${PORT}`);
+        res.redirect(`https://kyst.onrender.com/`);
     }
 );
 
