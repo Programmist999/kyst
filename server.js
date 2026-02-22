@@ -958,7 +958,7 @@ app.get('/api/chats/:chatId/info', (req, res) => {
             
             const timestamp = Date.now();
             const random = Math.random().toString(36).substring(2, 8);
-            const inviteLink = `https://kyst.onrender.com/:1726/invite/${chatId}_${timestamp}_${random}`;
+            const inviteLink = `https://kyst.onrender.com/invite/${chatId}_${timestamp}_${random}`;
             
             db.all(
                 `SELECT * FROM messages WHERE chat_id = ? AND type = 'file' ORDER BY created_at DESC LIMIT 20`,
