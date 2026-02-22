@@ -17,7 +17,7 @@ const PORT = 1726;
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: `http://localhost:${PORT}`,
+        origin: `https://kyst.onrender.com/:${PORT}`,
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -242,7 +242,7 @@ const GOOGLE_CLIENT_SECRET = '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';
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: `http://localhost:${PORT}/auth/google/callback`
+    callbackURL: `https://kyst.onrender.com/:${PORT}/auth/google/callback`
 }, async (accessToken, refreshToken, profile, done) => {
     console.log('✅ Google profile:', profile.id);
     
@@ -311,7 +311,7 @@ const GITHUB_CLIENT_SECRET = 'your_github_client_secret';
 passport.use(new GitHubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: `http://localhost:${PORT}/auth/github/callback`
+    callbackURL: `https://kyst.onrender.com/:${PORT}/auth/github/callback`
 }, async (accessToken, refreshToken, profile, done) => {
     console.log('✅ GitHub profile:', profile.id);
     
@@ -381,7 +381,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect(`http://localhost:${PORT}`);
+        res.redirect(`https://kyst.onrender.com/:${PORT}`);
     }
 );
 
@@ -392,7 +392,7 @@ app.get('/auth/github',
 app.get('/auth/github/callback', 
     passport.authenticate('github', { failureRedirect: '/' }),
     (req, res) => {
-        res.redirect(`http://localhost:${PORT}`);
+        res.redirect(`https://kyst.onrender.com/:${PORT}`);
     }
 );
 
@@ -958,7 +958,7 @@ app.get('/api/chats/:chatId/info', (req, res) => {
             
             const timestamp = Date.now();
             const random = Math.random().toString(36).substring(2, 8);
-            const inviteLink = `http://localhost:1726/invite/${chatId}_${timestamp}_${random}`;
+            const inviteLink = `https://kyst.onrender.com/:1726/invite/${chatId}_${timestamp}_${random}`;
             
             db.all(
                 `SELECT * FROM messages WHERE chat_id = ? AND type = 'file' ORDER BY created_at DESC LIMIT 20`,
@@ -1321,7 +1321,7 @@ app.get('/invite/:token', (req, res) => {
                     <div class="container">
                         <h1>palette</h1>
                         <p>Приглашение в чат</p>
-                        <button class="btn" onclick="window.location.href='http://localhost:1726'">Open Palette</button>
+                        <button class="btn" onclick="window.location.href='https://kyst.onrender.com/'">Open Palette</button>
                     </div>
                 </body>
             </html>
@@ -1330,7 +1330,7 @@ app.get('/invite/:token', (req, res) => {
     
     res.cookie('invite_chat', chatId, { maxAge: 900000, httpOnly: true });
     
-    res.redirect('http://localhost:1726');
+    res.redirect('https://kyst.onrender.com/');
 });
 
 // ============= SOCKET.IO =============
