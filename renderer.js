@@ -1,6 +1,6 @@
 class PaletteMessenger {
     constructor() {
-        this.socket = io('http://localhost:1726', {
+        this.socket = io('https://kyst.onrender.com', {
             transports: ['polling', 'websocket'],
             reconnectionAttempts: 10,
             reconnectionDelay: 1000
