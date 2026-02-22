@@ -244,6 +244,8 @@ body {
 .slide-out-right { animation: slideOutRight 0.3s ease forwards; }
 .slide-in-left { animation: slideInLeft 0.3s ease forwards; }
 .slide-out-left { animation: slideOutLeft 0.3s ease forwards; }
+.slide-up-centered { animation: slideUpCentered 0.3s ease forwards; }
+.slide-down-centered { animation: slideDownCentered 0.3s ease forwards; }
 .message-appear { animation: messageAppear 0.3s ease; }
 .message-delete { animation: messageDelete 0.2s ease forwards; }
 .highlight { animation: highlight 0.5s ease; }
@@ -2220,7 +2222,7 @@ body {
     box-shadow: 0 8px 24px var(--md-sys-color-shadow);
     border: 1px solid var(--md-sys-color-outline);
     z-index: 20;
-    animation: slideUp 0.3s ease;
+    animation: slideUpCentered 0.3s ease;
     width: fit-content;
     margin: 0 auto;
 }
@@ -2230,7 +2232,7 @@ body {
     height: 10px;
     background: #f44336;
     border-radius: 50%;
-    animation: pulse 1s infinite;
+    animation: pulseRecording 1s infinite;
 }
 
 #voice-timer {
@@ -2365,7 +2367,7 @@ body {
     z-index: 1000;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    animation: slideUp 0.3s ease;
+    animation: slideUpCentered 0.3s ease;
     min-width: 200px;
     justify-content: center;
 }
@@ -2391,7 +2393,7 @@ body {
     height: 10px;
     background: #f44336;
     border-radius: 50%;
-    animation: pulse 1s infinite;
+    animation: pulseRecording 1s infinite;
 }
 
 #voice-timer {
@@ -2423,40 +2425,6 @@ body {
     background: var(--md-sys-color-primary);
     filter: brightness(1.1);
 }
-
-/* ============= АНИМАЦИИ ============= */
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.8; }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translate(-50%, 100%);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, 0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideDown {
-    from {
-        transform: translate(-50%, 0);
-        opacity: 1;
-    }
-    to {
-        transform: translate(-50%, 100%);
-        opacity: 0;
-    }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
 
 /* ============= TEST BACKGROUND ============= */
 .test-bg {
@@ -2860,7 +2828,7 @@ body {
     height: 12px;
     background: #f44336;
     border-radius: 50%;
-    animation: pulse 1s infinite;
+    animation: pulseRecording 1s infinite;
 }
 
 #voice-timer {
@@ -4398,5 +4366,33 @@ body {
     
     .call-audio-name {
         font-size: 24px;
+    }
+}
+
+/* ============= АНИМАЦИИ ============= */
+@keyframes pulseRecording {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes slideUpCentered {
+    from {
+        transform: translate(-50%, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDownCentered {
+    from {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate(-50%, 100%);
+        opacity: 0;
     }
 }
